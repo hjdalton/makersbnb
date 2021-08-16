@@ -1,1 +1,5 @@
-<%= session[:space_name] %>
+<ul>
+  <% @spaces.each do |space| %>
+    <li><%= space %></li>
+  <% end %>
+</ul>

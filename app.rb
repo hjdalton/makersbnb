@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require '/Users/Student/Documents/makersbnb/lib/spaces.rb'
 
 class Airbnb < Sinatra::Base
   configure :development do
@@ -11,11 +12,9 @@ class Airbnb < Sinatra::Base
     erb :new_space
   end
 
-  get '/spaces' do
-  end
-
   post '/spaces' do
-    session[:space_name] = params[:space_name]
+    Space.create(space_name: params[:space_name])
+    @spaces = Space.all
     erb :spaces
   end
 
