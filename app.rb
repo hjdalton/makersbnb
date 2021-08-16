@@ -1,13 +1,22 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require_relative './lib/user'
 
 class Airbnb < Sinatra::Base
 
+  enable :sessions
+
   get '/' do
     erb :index
+    
   end
 
-  post '/spaces' do
+  post '/signup' do
+    User.create(email: params[:email], password: params[:password1])
+    redirect '/spaces'
+  end
+
+  get '/spaces' do
     "Book a Space"
   end
   

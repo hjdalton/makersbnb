@@ -2,12 +2,16 @@ require 'user'
 
 describe User do
   describe '.all' do
-    it 'creates a new user in the database' do
-      connection = PG.connect(dbname: 'makersbnb_test')
-      connection.exec("INSERT INTO users (email, password) VALUES ('test@test.com', 'password');")
+    it 'shows all users in the database' do
       users = User.all
       expect(users).to include('test@test.com')
     end
   end
 
+  describe '.create' do
+    it 'adds the user credentials to the database' do
+      User.create(email: 'test2@test.com', password: 'password')
+      expect(User.all).to include("test2@test.com")
+    end
+  end
 end
