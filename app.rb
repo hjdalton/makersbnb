@@ -5,7 +5,7 @@ require_relative './lib/spaces.rb'
 
 class Airbnb < Sinatra::Base
   enable :sessions
-  
+
   get '/' do
     erb :index
   end
@@ -18,8 +18,8 @@ class Airbnb < Sinatra::Base
   get '/spaces' do
     "Book a Space"
   end
-  
-  
+
+
   get '/spaces/new' do
     @space_name = session[:space_name]
     erb :new_space
@@ -35,9 +35,14 @@ class Airbnb < Sinatra::Base
     erb :sign_in
   end
 
-  post 'sign_in' do
-    User.sign_in(email: params[:email], password: params[:password])
+  post '/sign_in' do
+    @current_user = User.sign_in(email: params[:email], password: params[:password])
+    if @current_user == "Unknown User"
+      redirect '/sign_in'
+    else
+      redirect '/spaces'
+    end
   end
-  
+
   run! if app_file == $0
 end

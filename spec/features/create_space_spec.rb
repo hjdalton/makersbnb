@@ -7,3 +7,18 @@ feature "creating space" do
     expect(page).to have_content ("Hotel Alpha")
   end
 end
+
+feature "creating mutliple spaces" do
+  scenario "a homeowner an create multiple spaces" do
+    visit('/spaces/new')
+    fill_in('space_name', with: 'Hotel Alpha')
+    click_button('Submit')
+    
+    visit('/spaces/new')
+    fill_in('space_name', with: 'Hotel Bravo')
+    click_button('Submit')
+
+    expect(page).to have_content ("Hotel Alpha")
+    expect(page).to have_content ("Hotel Bravo")
+  end
+end
