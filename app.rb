@@ -1,7 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative './lib/user'
-require_relative './lib/spaces.rb'
+require_relative './lib/space.rb'
 
 class Airbnb < Sinatra::Base
   enable :sessions
