@@ -12,26 +12,12 @@ class Airbnb < Sinatra::Base
 
   post '/signup' do
     User.create(email: params[:email], password: params[:password1])
+    @email = session[:email]
     redirect '/spaces'
   end
 
-  get '/spaces' do
-    "Book a Space"
-  end
-
-
-  get '/spaces/new' do
-    @space_name = session[:space_name]
-    erb :new_space
-  end
-
-  post '/spaces' do
-    Space.create(space_name: params[:space_name])
-    @spaces = Space.all
-    erb :spaces   #display the spaces listed by that user
-  end
-
   get '/sign_in' do
+    @email = session[:email]
     erb :sign_in
   end
 
@@ -42,6 +28,21 @@ class Airbnb < Sinatra::Base
     else
       redirect '/spaces'
     end
+  end
+
+  get '/spaces' do
+    "Book a Space"
+  end
+
+  get '/spaces/new' do
+    @space_name = session[:space_name]
+    erb :new_space
+  end
+
+  post '/spaces' do
+    Space.create(space_name: params[:space_name], email: params[:email])
+    @spaces = Space.all
+    erb :spaces  
   end
 
   run! if app_file == $0
