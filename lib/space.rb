@@ -12,7 +12,7 @@ class Space
   end
   
   def self.create(space_name:, description:, price:)
-    if ENV['ENVIROMENT'] == 'test'
+    if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
     else
       connection = PG.connect(dbname: 'makersbnb')
@@ -22,7 +22,7 @@ class Space
   end
   
   def self.all
-    if ENV['ENVIROMENT'] == 'test'
+    if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
     else
       connection = PG.connect(dbname: 'makersbnb')

@@ -4,9 +4,6 @@ require 'database_helpers'
 describe Space do
   describe "#all" do
     it "returns all spaces" do
-      connection = PG.connect(dbname: 'makersbnb_test')
-      # connection.exec("TRUNCATE spaces;")
-      # connection.exec("ALTER SEQUENCE spaces_id_seq RESTART WITH 1;")
       space = Space.create(space_name: '123 Baker Street', description: 'Home of SH', price: '200')
       Space.create(space_name: '124 Baker Street', description: 'Next to home of SH', price: '150')
       Space.create(space_name: '125 Baker Street', description: 'Close to home of SH', price: '100')
