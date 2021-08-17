@@ -41,11 +41,16 @@
           null,
           null,
           1,
+          0,
+          null,
+          null,
+          1,
           null
         ]
       },
       "/Users/heatherdalton/makers_projects/makersbnb/lib/user.rb": {
         "lines": [
+          1,
           1,
           null,
           1,
@@ -83,12 +88,25 @@
           0,
           null,
           null,
-          null,
-          null,
           1,
           1,
           null,
           1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/heatherdalton/makers_projects/makersbnb/lib/database_connection.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          0,
+          null,
+          0,
           null,
           null,
           null
@@ -114,7 +132,7 @@
           1,
           null,
           1,
-          29,
+          33,
           null,
           null,
           null,
@@ -157,6 +175,9 @@
           1,
           1,
           null,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -189,6 +210,6 @@
         ]
       }
     },
-    "timestamp": 1629201053
+    "timestamp": 1629205623
   }
 }
