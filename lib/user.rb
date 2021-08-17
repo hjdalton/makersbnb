@@ -35,8 +35,6 @@ class User
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    
-
     result = connection.exec("SELECT * FROM users WHERE email LIKE '#{email}' AND password LIKE '#{password}';")
     result = result.map { |email| email['email'] }
 

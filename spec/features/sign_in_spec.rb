@@ -5,3 +5,6 @@ feature 'allows a user to sign in' do
     expect(page).to have_content "Email"
   end
 end
+
+#write a test for incorrect log in details returning error
+#write a test for correct log in details showing user log in 

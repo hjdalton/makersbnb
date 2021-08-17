@@ -34,6 +34,10 @@ class Airbnb < Sinatra::Base
   get '/sign_in' do
     erb :sign_in
   end
+
+  post 'sign_in' do
+    User.sign_in(email: params[:email], password: params[:password])
+  end
   
   run! if app_file == $0
 end
