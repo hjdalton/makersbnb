@@ -28,7 +28,11 @@ class Airbnb < Sinatra::Base
   post '/spaces' do
     Space.create(space_name: params[:space_name])
     @spaces = Space.all
-    erb :spaces
+    erb :spaces   #display the spaces listed by that user
+  end
+
+  get '/sign_in' do
+    erb :sign_in
   end
   
   run! if app_file == $0

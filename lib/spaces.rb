@@ -7,7 +7,7 @@ class Space
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
-  connection.exec("INSERT INTO spaces (space_name) VALUES ('#{space_name}')")
+  connection.exec("INSERT INTO spaces (space_name) VALUES ('#{space_name}')")   #needs to push the user ID in
 
   def self.all
     if ENV['ENVIROMENT'] == 'test'
@@ -15,7 +15,7 @@ class Space
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
-  result = connection.exec('SELECT * FROM spaces')
+  result = connection.exec('SELECT * FROM spaces') 
   result.map { |spaces| spaces['space_name'] }
 end
 end
