@@ -16,7 +16,7 @@ describe Space do
       expect(spaces.first.space_name).to eq '123 Baker Street'
       expect(spaces.first.description).to eq 'Home of SH'
       expect(spaces.first.price).to eq '200'
-    end  
+    end
   end
 
   describe '.create' do
