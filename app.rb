@@ -43,7 +43,7 @@ class Airbnb < Sinatra::Base
   end
 
   post '/spaces' do
-    Space.create(space_name: params[:space_name], email: session[:current_user],description: params[:description], price: params[:price])
+    Space.create(space_name: params[:space_name], description: params[:description], price: params[:price], current_user: session[:current_user])
     @spaces = Space.all
     redirect '/spaces'
   end

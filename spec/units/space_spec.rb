@@ -4,9 +4,9 @@ require 'database_helpers'
 describe Space do
   describe "#all" do
     it "returns all spaces" do
-      space = Space.create(space_name: '123 Baker Street', description: 'Home of SH', price: '200')
-      Space.create(space_name: '124 Baker Street', description: 'Next to home of SH', price: '150')
-      Space.create(space_name: '125 Baker Street', description: 'Close to home of SH', price: '100')
+      space = Space.create(space_name: '123 Baker Street', description: 'Home of SH', price: '200', current_user: "testing@test.com")
+      Space.create(space_name: '124 Baker Street', description: 'Next to home of SH', price: '150', current_user: "testing@test.com")
+      Space.create(space_name: '125 Baker Street', description: 'Close to home of SH', price: '100', current_user: "testing@test.com")
 
       spaces = Space.all
 
@@ -21,7 +21,7 @@ describe Space do
 
   describe '.create' do
     it 'adds the space credentials to the database' do
-      space = Space.create(space_name: 'Hotel Alpha', description: 'new place near centre', price: '150')
+      space = Space.create(space_name: 'Hotel Alpha', description: 'new place near centre', price: '150', current_user: "testing@test.com")
       persisted_data = persisted_data(id: space.id)
       expect(space.space_name).to eq("Hotel Alpha")
     end
