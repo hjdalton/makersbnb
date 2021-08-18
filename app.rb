@@ -17,7 +17,6 @@ class Airbnb < Sinatra::Base
   end
 
   get '/sign_in' do
-    @email = session[:email]
     erb :sign_in
   end
 
@@ -26,6 +25,7 @@ class Airbnb < Sinatra::Base
     if @current_user == "Unknown User"
       redirect '/sign_in'
     else
+      session[:current_user] = @current_user
       redirect '/spaces'
     end
   end
@@ -40,7 +40,7 @@ class Airbnb < Sinatra::Base
   end
 
   post '/spaces' do
-    Space.create(space_name: params[:space_name], email: params[:email])
+    Space.create(space_name: params[:space_name], email: session[:current_user])
     @spaces = Space.all
     erb :spaces  
   end

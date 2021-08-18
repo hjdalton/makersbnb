@@ -39,6 +39,7 @@ class User
     result = result.map { |email| email['email'] }
 
     return 'Unknown User' if result == []
+    return result.first
 
   end
 end
