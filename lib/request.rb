@@ -22,13 +22,13 @@ class Request
       connection = PG.connect(dbname: 'makersbnb')
     end
     result = connection.exec(
-      "SELECT bookings.id, space_id, bookings.user_id, spaces.space_name, start_date, end_date, status
+      "SELECT bookings.id, space_id, bookings.user_id, space_name, start_date, end_date, status
       FROM bookings 
       JOIN spaces ON bookings.space_id = spaces.id 
       WHERE bookings.user_id = #{user_id}")
     
     Request.new(id: result[0]['id'],space_id: result[0]['space_id'], 
-      space_name: result[0]['spaces.space_name'],user_id: result[0]['booking.user_id'], 
+      space_name: result[0]['space_name'],user_id: result[0]['user_id'], 
       start_date: result[0]['start_date'], end_date: result[0]['end_date'], 
       status: result[0]['status'])
   end

@@ -21,13 +21,11 @@ class Space
       connection = PG.connect(dbname: 'makersbnb')
     end
     result = connection.exec("INSERT INTO spaces (space_name, description, price, user_id) VALUES($1, $2, $3, (SELECT id FROM users WHERE email = $4)) RETURNING id, space_name, description, price, user_id;", [space_name, description, price, current_user])
-    Space.new(id: result[0]['id'], space_name: result[0]['space_name'], description: result[0]['description'], price: result[0]['price'], current_user: result[0]['user_id'])
+    Space.new(id: result[0]['id'], space_name: result[0]['space_name'], 
+      description: result[0]['description'], price: result[0]['price'], 
+      current_user: result[0]['user_id'])
   end
-
-  #(' || $1 || ' ' || $2 ||  ' ' || $3 || ' ' || $4 ||'')’))
-  #'#{space_name}', '#{description}', '#{price}'
-
-
+  
   def self.all
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
