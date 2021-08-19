@@ -44,7 +44,8 @@ class Airbnb < Sinatra::Base
   end
 
   post '/spaces' do
-    Space.create(space_name: params[:space_name], description: params[:description], price: params[:price], current_user: session[:current_user])
+    Space.create(space_name: params[:space_name], description: params[:description],
+      price: params[:price], current_user: session[:current_user], start_date: params[:start_date], end_date: params[:end_date])
     @spaces = Space.all
     redirect '/spaces'
   end
@@ -56,6 +57,11 @@ class Airbnb < Sinatra::Base
 
   post '/requests' do
     p 'booking requested'
+  end
+  
+  get '/spaces/listing/:id' do
+    @spaces = Space.all
+    erb :space_listing
   end
 
   run! if app_file == $0
