@@ -15,7 +15,7 @@ describe Request do
   describe '.received' do
     it 'returns any requests that have been made for a homeowners space' do
       receive = Request.received(user_id: 1)
-      expect(receive.space_id).to eq '1'
+      expect(receive.first.space_id).to eq '1'
     end
   end
 end
