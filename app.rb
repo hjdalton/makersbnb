@@ -49,5 +49,14 @@ class Airbnb < Sinatra::Base
     redirect '/spaces'
   end
 
+  post '/space/1' do
+    p 'welcome'
+    erb :make_request
+  end
+
+  post '/requests' do
+    p 'booking requested'
+  end
+
   run! if app_file == $0
 end
