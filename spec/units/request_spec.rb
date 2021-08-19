@@ -1,25 +1,27 @@
 require 'request'
+require 'booking'
 
 describe Request do
-  describe '.made' do
-    it 'adds a request made to database' do
-      request = Request.made(space_id: '1', user_id: '2', start_date: '2020/08/19', end_date: "2020/08/20", status: "Requested")
+
+  describe '.received' do
+    it 'returns any requests that have been made for a homeowners space' do
     
-      expect(request).to be_a Request
-      expect(request.start_date).to eq '2020-08-19'
-      expect(request.end_date).to eq '2020-08-20'
-      expect(request.status).to eq 'Requested'
+      received = Request.received(user_id: 1)
+      
+      expect(received).to be_a Request
+      expect(receive.space_id).to eq '1'
     end
   end
 
-  describe '.received' do
+  describe '.made' do
+    it 'returns any booking requests that the user has made' do
 
+      make = Request.made(user_id: 2)
+
+      expect(make).to be_a Request
+      expect(made.user_id).to eq '2'
+
+    end
   end
 
-
 end
-
-# INSERT INTO bookings (space_id, user_id, start_date, end_date, status) VALUES (
-#   (SELECT id FROM spaces WHERE space_name = #{space_name} ),
-# (SELECT id FROM users WHERE email = #{email}),
-#   start_date, end_date, 'Requested')
