@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative './lib/user'
 require_relative './lib/space.rb'
+require_relative './lib/booking.rb'
 
 class Airbnb < Sinatra::Base
   enable :sessions
@@ -43,9 +44,24 @@ class Airbnb < Sinatra::Base
   end
 
   post '/spaces' do
-    Space.create(space_name: params[:space_name], description: params[:description], price: params[:price], current_user: session[:current_user])
+    Space.create(space_name: params[:space_name], description: params[:description],
+      price: params[:price], current_user: session[:current_user], start_date: params[:start_date], end_date: params[:end_date])
     @spaces = Space.all
     redirect '/spaces'
+  end
+
+  post '/space/1' do
+    p 'welcome'
+    erb :make_request
+  end
+
+  post '/requests' do
+    p 'booking requested'
+  end
+  
+  get '/spaces/listing/:id' do
+    @spaces = Space.all
+    erb :space_listing
   end
 
   run! if app_file == $0
