@@ -17,7 +17,7 @@ describe User do
 
   describe '.sign_in' do
     it 'raises an error if sign in details are not in the database' do
-      user = User.sign_in(email: 'test2@test.com', password: 'password')
+      user = User.sign_in(email: 'test3@test.com', password: 'password')
       expect(user).to eq('Unknown User')
     end
   end

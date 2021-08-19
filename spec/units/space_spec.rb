@@ -4,18 +4,18 @@ require 'database_helpers'
 describe Space do
   describe "#all" do
     it "returns all spaces" do
-      space = Space.create(space_name: '123 Baker Street', description: 'Home of SH', price: '200', current_user: "testing@test.com", start_date: "01/01/2022", end_date: "2022-12-25")
+      Space.create(space_name: '123 Baker Street', description: 'Home of SH', price: '200', current_user: "testing@test.com", start_date: "01/01/2022", end_date: "2022-12-25")
       Space.create(space_name: '124 Baker Street', description: 'Next to home of SH', price: '150', current_user: "testing@test.com", start_date: "01/01/2022", end_date: "2022-12-25")
-      Space.create(space_name: '125 Baker Street', description: 'Close to home of SH', price: '100', current_user: "testing@test.com", start_date: "01/01/2022", end_date: "2022-12-25")
+      space = Space.create(space_name: '125 Baker Street', description: 'Close to home of SH', price: '100', current_user: "testing@test.com", start_date: "01/01/2022", end_date: "2022-12-25")
 
       spaces = Space.all
 
-      expect(spaces.length).to eq 3
-      expect(spaces.first).to be_a Space
-      expect(spaces.first.id).to eq space.id
-      expect(spaces.first.space_name).to eq '123 Baker Street'
-      expect(spaces.first.description).to eq 'Home of SH'
-      expect(spaces.first.price).to eq '200'
+      expect(spaces.length).to eq 4
+      expect(spaces.last).to be_a Space
+      expect(spaces.last.id).to eq space.id
+      expect(spaces.last.space_name).to eq '125 Baker Street'
+      expect(spaces.last.description).to eq 'Close to home of SH'
+      expect(spaces.last.price).to eq '100'
     end
   end
 
