@@ -27,7 +27,7 @@ class Booking
       RETURNING id, space_id, user_id, start_date, end_date, status;", 
       [space_id, user_id, start_date, end_date])
     
-    Request.new(id: result[0]['id'],space_id: result[0]['space_id'], user_id: result[0]['user_id'], 
+    Booking.new(id: result[0]['id'],space_id: result[0]['space_id'], user_id: result[0]['user_id'], 
       start_date: result[0]['start_date'], end_date: result[0]['end_date'], status: result[0]['status'])
   end
 end
