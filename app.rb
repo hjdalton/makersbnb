@@ -49,6 +49,19 @@ class Airbnb < Sinatra::Base
     redirect '/spaces'
   end
 
+  post '/spaces/filter' do
+    @start_date = params[:start_date]
+    @end_date = params [:end_date]
+    redirect '/spaces/filter'
+  end
+
+  get '/spaces/filter' do
+    @spaces = Space.all
+    @start_date
+    @end_date
+    erb :filtered_spaces
+  end
+
   get '/spaces/listing/:id' do
     @spaces = Space.all
     erb :space_listing

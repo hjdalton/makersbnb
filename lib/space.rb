@@ -50,4 +50,14 @@ class Space
     end
   end
 
+  # def self.filter(start_date: , end_date:)
+  #   filtered_spaces = []
+  #   @spaces = Space.all
+  #   @spaces.each do |space|
+  #     if start_date >= space.start_date && end_date <= space.end_date
+  #       return space
+  #     end
+  #   end
+  # end
+
 end
