@@ -2,7 +2,6 @@
 <ul>
   <% @spaces.each do |space| %>
     <li class="space" id="space-<%= space.id %>">
-    <p>Name - <%= space.space_name %>, Description - <%= space.description %>, 
-    Price - £<%= space.price %>, Available from <%= space.start_date %> to <%= space.end_date %> </p>
+    <a href="/spaces/listing/<%=space.id%>"> <p><%= space.space_name %></p> </a>
   <% end %>
 </ul>
