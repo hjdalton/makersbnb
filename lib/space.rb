@@ -50,14 +50,31 @@ class Space
     end
   end
 
-  # def self.filter(start_date: , end_date:)
-  #   filtered_spaces = []
-  #   @spaces = Space.all
-  #   @spaces.each do |space|
-  #     if start_date >= space.start_date && end_date <= space.end_date
-  #       return space
-  #     end
-  #   end
-  # end
+  def self.filter(start_date: , end_date:)
+    # filtered_spaces = []
+    # @spaces = Space.all
+    # @spaces.each do |space|
+    #   if start_date >= space.start_date && end_date <= space.end_date
+    #     return space
+    #   end
+    # end
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'makersbnb_test')
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+    result = connection.exec("SELECT * FROM spaces WHERE start_date <= '#{start_date}' AND end_date >= '#{end_date}'")
+    result.map do |space|
+      Space.new(
+      id: space['id'],
+      space_name: space['space_name'],
+      description: space['description'],
+      price: space['price'],
+      current_user: space['user_id'],
+      start_date: space['start_date'],
+      end_date: space['end_date']
+      )
+    end
+  end
 
 end
