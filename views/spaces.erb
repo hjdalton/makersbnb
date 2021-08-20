@@ -11,7 +11,10 @@
   </form>
 
   <% @spaces.each do |space| %>
-    <li class="space" id="space-<%= space.id %>">
-    <p>Name - <%= space.space_name %>, Description - <%= space.description %>, Price - £<%= space.price %></p>
+    <class="space" id="space-<%= space.id %>">
     <a href="/spaces/listing/<%=space.id%>"> <p><%= space.space_name %></p> </a>
     <% end %>
+
+    <form action="/spaces/new" method="get">
+      <input type="submit" value="List a space" />
+      </form>

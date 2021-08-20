@@ -49,13 +49,17 @@ class Airbnb < Sinatra::Base
     redirect '/spaces'
   end
 
-  post '/space/1' do
-    p 'welcome'
-    erb :make_request
-  end
+  # post '/space/1' do
+  #   p 'welcome'
+  #   erb :make_request
+  # end
 
   post '/requests' do
-    p 'booking requested'
+    redirect '/requests'
+  end
+
+  get '/requests' do
+    erb :requests
   end
 
   get '/spaces/listing/:id' do
