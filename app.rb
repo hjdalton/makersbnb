@@ -6,7 +6,6 @@ require_relative './lib/booking.rb'
 
 class Airbnb < Sinatra::Base
   enable :sessions
-
   get '/' do
     erb :index
   end
@@ -58,11 +57,19 @@ class Airbnb < Sinatra::Base
   post '/requests' do
     p 'booking requested'
   end
-  
+
   get '/spaces/listing/:id' do
     @spaces = Space.all
     erb :space_listing
   end
+
+  post '/spaces/filter' do
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+    @spaces = Space.filter(start_date: @start_date, end_date: @end_date)
+    erb :spaces
+  end
+
 
   run! if app_file == $0
 end
