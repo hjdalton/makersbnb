@@ -14,20 +14,20 @@ class Request
     @space_name = space_name
   end
 
-  
+
   def self.made(current_user:)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
-    result = connection.exec("SELECT bookings.id, space_id, bookings.user_id, space_name, bookings.start_date, bookings.end_date, status FROM bookings 
-      JOIN spaces ON bookings.space_id = spaces.id 
+    result = connection.exec("SELECT bookings.id, space_id, bookings.user_id, space_name, bookings.start_date, bookings.end_date, status FROM bookings
+      JOIN spaces ON bookings.space_id = spaces.id
       WHERE bookings.user_id = '#{current_user}';")
-    
-    # Request.new(id: result[0]['id'],space_id: result[0]['space_id'], 
-    #   space_name: result[0]['space_name'],current_user: result[0]['user_id'], 
-    #   start_date: result[0]['start_date'], end_date: result[0]['end_date'], 
+
+    # Request.new(id: result[0]['id'],space_id: result[0]['space_id'],
+    #   space_name: result[0]['space_name'],current_user: result[0]['user_id'],
+    #   start_date: result[0]['start_date'], end_date: result[0]['end_date'],
     #   status: result[0]['status'])
 
       result.map do |made|
@@ -50,8 +50,8 @@ class Request
       connection = PG.connect(dbname: 'makersbnb')
     end
     result = connection.exec(
-      "SELECT bookings.id, space_id, spaces.user_id, space_name, bookings.start_date, bookings.end_date, status FROM bookings 
-      JOIN spaces ON bookings.space_id = spaces.id 
+      "SELECT bookings.id, space_id, spaces.user_id, space_name, bookings.start_date, bookings.end_date, status FROM bookings
+      JOIN spaces ON bookings.space_id = spaces.id
       WHERE spaces.user_id = '#{current_user}';")
     result.map do |received|
       Request.new(
@@ -67,7 +67,3 @@ class Request
   end
 
 end
-
-
-
-
