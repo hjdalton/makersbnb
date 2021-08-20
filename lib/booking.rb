@@ -45,9 +45,15 @@ class Booking
       WHERE id = #{id} 
       RETURNING id, space_id, user_id, start_date, end_date, status;" 
       )
-    
-    Booking.new(id: result[0]['id'],space_id: result[0]['space_id'], user_id: result[0]['user_id'], 
-      start_date: result[0]['start_date'], end_date: result[0]['end_date'], status: result[0]['status'])
+    result.map do |booking|
+    Booking.new(id: booking['id'],
+      space_id: booking['space_id'], 
+      user_id: booking['user_id'], 
+      start_date: booking['start_date'], 
+      end_date: booking['end_date'], 
+      status: booking['status']
+    )
+    end
   end
 
   def self.reject(id:)
@@ -62,8 +68,14 @@ class Booking
       WHERE id = #{id} 
       RETURNING id, space_id, user_id, start_date, end_date, status;" 
       )
-    
-    Booking.new(id: result[0]['id'],space_id: result[0]['space_id'], user_id: result[0]['user_id'], 
-      start_date: result[0]['start_date'], end_date: result[0]['end_date'], status: result[0]['status'])
+      result.map do |booking|
+        Booking.new(id: booking['id'],
+          space_id: booking['space_id'], 
+          user_id: booking['user_id'], 
+          start_date: booking['start_date'], 
+          end_date: booking['end_date'], 
+          status: booking['status']
+        )
+      end
   end
 end

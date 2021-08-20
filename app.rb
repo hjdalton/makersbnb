@@ -59,10 +59,7 @@ class Airbnb < Sinatra::Base
     # redirect '/requests'
     # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
     @made = Request.made(current_user: session[:current_user])
-    p @made
-    p session[:current_user]
-    @received = Request.received(current_user:  session[:current_user])
-    p @received
+    @received = Request.received(current_user: session[:current_user])
     erb :requests
     # p 'booking requested'
 
@@ -85,26 +82,28 @@ class Airbnb < Sinatra::Base
   end
 
   get '/spaces/requested/:id' do
+    session[:booking_id] = params[:id]
     @received
     erb :confirm_requests
   end
 
   post '/accept' do
-    redirect '/spaces'
+    # @id = params[:id]
+    # accept = Booking.accept(id: @id)
+    redirect '/requests'
   end
 
   post '/reject' do
-    redirect '/spaces'
+    p session[:booking_id]
+    Booking.reject(id: session[:booking_id])
+    redirect '/requests'
   end
 
   get '/requests' do
     # redirect '/requests'
     # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
     @made = Request.made(current_user: session[:current_user])
-    p @made
-    p session[:current_user]
     @received = Request.received(current_user:  session[:current_user])
-    p @received
     erb :requests
     # p 'booking requested'
 
