@@ -3,10 +3,10 @@ require 'sinatra/reloader'
 require_relative './lib/user'
 require_relative './lib/space.rb'
 require_relative './lib/booking.rb'
+require_relative './lib/request.rb'
 
 class Airbnb < Sinatra::Base
   enable :sessions
-
   get '/' do
     erb :index
   end
@@ -50,19 +50,37 @@ class Airbnb < Sinatra::Base
     redirect '/spaces'
   end
 
-  post '/space/1' do
-    p 'welcome'
-    erb :make_request
-  end
+  # post '/space/1' do
+  #   p 'welcome'
+  #   erb :make_request
+  # end
 
   post '/requests' do
-    p 'booking requested'
+    redirect '/requests'
+    # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
+     @made = Request.made(current_user: session[:current_user])
+    # @received = Request.received(user_id: session[:current_user])
+    erb :requests
+    # p 'booking requested'
+
   end
-  
+
+  get '/requests' do
+    erb :requests
+  end
+
   get '/spaces/listing/:id' do
     @spaces = Space.all
     erb :space_listing
   end
+
+  post '/spaces/filter' do
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+    @spaces = Space.filter(start_date: @start_date, end_date: @end_date)
+    erb :spaces
+  end
+
 
   run! if app_file == $0
 end
