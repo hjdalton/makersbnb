@@ -84,6 +84,11 @@ class Airbnb < Sinatra::Base
     erb :spaces
   end
 
+  get '/spaces/requested/:id' do
+    @received
+    erb :confirm_requests
+  end
+
 
   run! if app_file == $0
 end

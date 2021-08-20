@@ -12,7 +12,12 @@
 
 <h2>Requests received</h2>
 <ul>
-
+  <% @received.each do |request_received| %>
+    <li class="request" id="request-<%= request_received.id %>">
+    <a href="spaces/requested/<%= request_received.space_id %>"><p><%= request_received.space_name %></p></a>
+    <p> <%=request_received.start_date%> <%=request_received.end_date%> </p>
+    <p> Status: <%= request_received.status %> </p>
+  <% end %>  
 </ul>
 
 <br><br>
