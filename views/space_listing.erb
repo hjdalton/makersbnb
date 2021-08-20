@@ -3,7 +3,7 @@
     <% @spaces.each do |space| %>
       <% if space.id == params[:id] %>
         <h1><%=space.space_name%></h1>
-        <h3>Description</h3> <%= space.description %> 
+        <h3>Description </h3> <%= space.description %>
         <br><h3>Price</h3> £<%= space.price %> <br><h3>Availability</h3> <%= space.start_date %> to <%= space.end_date %> </p>
         <% end %>
         <% end %>
