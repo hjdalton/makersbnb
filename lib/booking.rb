@@ -43,17 +43,10 @@ class Booking
       "UPDATE bookings
       SET status = 'accepted'
       WHERE id = #{id} 
-      RETURNING id, space_id, user_id, start_date, end_date, status;" 
+      RETURNING id;" 
       )
-    result.map do |booking|
-    Booking.new(id: booking['id'],
-      space_id: booking['space_id'], 
-      user_id: booking['user_id'], 
-      start_date: booking['start_date'], 
-      end_date: booking['end_date'], 
-      status: booking['status']
-    )
-    end
+      result = result.map { |booking_id| booking_id['id'] }
+      return result.first
   end
 
   def self.reject(id:)
@@ -66,16 +59,9 @@ class Booking
       "UPDATE bookings
       SET status = 'rejected'
       WHERE id = #{id} 
-      RETURNING id, space_id, user_id, start_date, end_date, status;" 
+      RETURNING id;" 
       )
-      result.map do |booking|
-        Booking.new(id: booking['id'],
-          space_id: booking['space_id'], 
-          user_id: booking['user_id'], 
-          start_date: booking['start_date'], 
-          end_date: booking['end_date'], 
-          status: booking['status']
-        )
-      end
+      result = result.map { |booking_id| booking_id['id'] }
+      return result.first
   end
 end

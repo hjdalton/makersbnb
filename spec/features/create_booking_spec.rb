@@ -7,7 +7,6 @@ feature 'user makes booking on a space' do
     click_link ('test_space')
     click_button('Book!')
     expect(current_path).to eq('/requests')
-    page.save_and_open_page
     expect(page).to have_link('test_space', href: 'spaces/listing/1')
   end
 end

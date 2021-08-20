@@ -50,24 +50,11 @@ class Airbnb < Sinatra::Base
     redirect '/spaces'
   end
 
-  # post '/space/1' do
-  #   p 'welcome'
-  #   erb :make_request
-  # end
-
   post '/requests' do
-    # redirect '/requests'
-    # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
     @made = Request.made(current_user: session[:current_user])
     @received = Request.received(current_user: session[:current_user])
     erb :requests
-    # p 'booking requested'
-
   end
-
-  # get '/requests' do
-  #   erb :requests
-  # end
 
   get '/spaces/listing/:id' do
     @spaces = Space.all
@@ -82,31 +69,27 @@ class Airbnb < Sinatra::Base
   end
 
   get '/spaces/requested/:id' do
-    session[:booking_id] = params[:id]
     @received
     erb :confirm_requests
   end
 
   post '/accept' do
-    # @id = params[:id]
-    # accept = Booking.accept(id: @id)
     redirect '/requests'
   end
 
   post '/reject' do
-    p session[:booking_id]
     Booking.reject(id: session[:booking_id])
     redirect '/requests'
   end
 
   get '/requests' do
-    # redirect '/requests'
-    # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
     @made = Request.made(current_user: session[:current_user])
     @received = Request.received(current_user:  session[:current_user])
+ 
+    p @received.id #retrieve value from @id key within the array
+    session[:booking_id] = @booking_id
+    p session[:booking_id]
     erb :requests
-    # p 'booking requested'
-
   end
 
   run! if app_file == $0

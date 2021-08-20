@@ -25,11 +25,6 @@ class Request
       JOIN spaces ON bookings.space_id = spaces.id
       WHERE bookings.user_id = '#{current_user}';")
 
-    # Request.new(id: result[0]['id'],space_id: result[0]['space_id'],
-    #   space_name: result[0]['space_name'],current_user: result[0]['user_id'],
-    #   start_date: result[0]['start_date'], end_date: result[0]['end_date'],
-    #   status: result[0]['status'])
-
       result.map do |made|
       Request.new(
         id: made['id'],
