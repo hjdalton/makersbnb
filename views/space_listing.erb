@@ -4,17 +4,19 @@
     <% @spaces.each do |space| %>
       <% if space.id == params[:id] %>
         <h1><%=space.space_name%></h1>
-        <h3>Description </h3> <%= space.description %>
-        <br><h3>Price</h3> £<%= space.price %> <br><h3>Availability</h3> <%= space.start_date %> to <%= space.end_date %> </p>
-        <% end %>
-        <% end %>
 
-<form action="/requests" method="post"><button>Request Booking</button></form>
+        Description - <%= space.description %><br/>
+        Price - £<%= space.price %><br/>
+        Available from <%= space.start_date %> to <%= space.end_date %> </p>
+        <% end %>
+        <% end %>
+<form action="/requests" method="post">
+<input type="submit" value="Book!"> <br/>
+</form>
 
 <form>
 <input type="button" value="Back" onclick="history.back()">
 </form>
-
 
 <div class="footer">
 <img src="https://github.com/hjdalton/makersbnb/blob/main/logo/logo_large.png?raw=true" alt="icon" height="30", width="180">

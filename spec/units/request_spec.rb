@@ -4,17 +4,17 @@ describe Request do
   describe '.made' do
     it 'returns any booking requests that the user has made' do
 
-      made = Request.made(user_id: 2)
+      made = Request.made(current_user: 2)
 
       expect(made).to be_a Request
-      expect(made.user_id).to eq '2'
+      expect(made.current_user).to eq '2'
 
     end
   end
 
   describe '.received' do
     it 'returns any requests that have been made for a homeowners space' do
-      receive = Request.received(user_id: 1)
+      receive = Request.received(current_user: 1)
       expect(receive.first.space_id).to eq '1'
     end
   end

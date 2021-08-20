@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require_relative './lib/user'
 require_relative './lib/space.rb'
 require_relative './lib/booking.rb'
+require_relative './lib/request.rb'
 
 class Airbnb < Sinatra::Base
   enable :sessions
@@ -56,6 +57,12 @@ class Airbnb < Sinatra::Base
 
   post '/requests' do
     redirect '/requests'
+    # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
+     @made = Request.made(current_user: session[:current_user])
+    # @received = Request.received(user_id: session[:current_user])
+    erb :requests
+    # p 'booking requested'
+
   end
 
   get '/requests' do
