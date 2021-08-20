@@ -11,6 +11,6 @@ feature 'allow a user to view details about a space' do
     expect(page).to have_content ("Hotel Alpha")
     expect(page).to have_content ("new place near centre")
     expect(page).to have_content ("150")
-    expect(page).to have_content("Available from 2022-01-01 to 2022-12-25")
+    expect(page).to have_content("2022-01-01 to 2022-12-25")
   end
 end
