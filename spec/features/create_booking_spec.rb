@@ -7,7 +7,7 @@ feature 'user makes booking on a space' do
     click_link ('test_space')
     click_button('Book!')
     expect(current_path).to eq('/requests')
-    expect(page).to have_content('booking requested')
+    expect(page).to have_content('test_space')
 
 
   end
