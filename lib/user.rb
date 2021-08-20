@@ -3,9 +3,10 @@ require 'pg'
 class User
  attr_reader :email, :password
 
-  def initialize(email:, password:)
+  def initialize(email:, password:, id:)
     @email = email
     @password = password
+    @id = id
   end
 
   def self.all
@@ -36,8 +37,7 @@ class User
     end
 
     result = connection.exec("SELECT * FROM users WHERE email LIKE '#{email}' AND password LIKE '#{password}';")
-    result = result.map { |email| email['email'] }
-
+    result = result.map { |user_id| user_id['id'] }
     return 'Unknown User' if result == []
     return result.first
 
