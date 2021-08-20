@@ -56,18 +56,18 @@ class Airbnb < Sinatra::Base
   # end
 
   post '/requests' do
-    redirect '/requests'
+    # redirect '/requests'
     # @booking = Booking.create(space_id: params[space_id], user_id: session[:current_user], status: params[:status]))
      @made = Request.made(current_user: session[:current_user])
-    # @received = Request.received(user_id: session[:current_user])
+    @received = Request.received(current_user:  session[:current_user])
     erb :requests
     # p 'booking requested'
 
   end
 
-  get '/requests' do
-    erb :requests
-  end
+  # get '/requests' do
+  #   erb :requests
+  # end
 
   get '/spaces/listing/:id' do
     @spaces = Space.all

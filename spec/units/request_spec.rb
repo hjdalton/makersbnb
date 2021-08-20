@@ -6,8 +6,7 @@ describe Request do
 
       made = Request.made(current_user: 2)
 
-      expect(made).to be_a Request
-      expect(made.current_user).to eq '2'
+      expect(made.first.current_user).to eq '2'
 
     end
   end
