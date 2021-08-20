@@ -1,21 +1,36 @@
-<h1> List a new space! </h1>
+<h1><img src="https://github.com/hjdalton/makersbnb/blob/main/logo/icon_small.png?raw=true" alt="icon" height="40", width="40">  List a new space! </h1>
 
 <form action="/spaces" method="post">
   <label for="space_name">Property Name</label>
-  <input type="text" name="space_name" placeholder="name"/>
+  <input type="text" name="space_name" placeholder="name"/><br/>
   <label for="description">Description</label>
-  <input type="text" name="description" placeholder="description"/>
+  <input type="text" name="description" placeholder="description"/><br/>
   <label for="price">Price Per Night</label>
-  <input type="text" name="price" placeholder="price"/>
+  <input type="text" name="price" placeholder="price"/><br/>
   <label for="start_date">Start date:</label>
   <input type="date" name="start_date"
-      min="2021-01-01" max="2022-12-31">
+      min="2021-01-01" max="2022-12-31"><br/>
   <label for="end_date">End date:</label>
   <input type="date" name="end_date"
-      min="2021-01-02" max="2023-01-01">
+      min="2021-01-02" max="2023-01-01"><br/>
   <input type="submit" value="Submit" />
 </form>
+
 
 <form>
  <input type="button" value="Back" onclick="history.back()">
 </form>
+
+<div class="footer">
+<img src="https://github.com/hjdalton/makersbnb/blob/main/logo/logo_large.png?raw=true" alt="icon" height="30", width="180">
+  <p>Wherever you stay make sure it feels like home</p>
+</div>
+
+<style>
+body {
+  margin: auto;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; 
+  background-color: #F8F7EE;
+}
+</style>
+
